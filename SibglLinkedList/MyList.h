@@ -152,8 +152,9 @@ void MyList::set(int data, int index)		//function that change data of the elemen
 }
 
 void MyList::pop_back()						//function that delete the last element of the list		O(n)
-{
-	remove(size--);
+{	
+	int toRemove = size - 1;
+	remove(toRemove);
 }
 
 bool contains(MyList& fList, MyList& sList)		//function that check if the list contains another list		O(n^2)
@@ -162,7 +163,7 @@ bool contains(MyList& fList, MyList& sList)		//function that check if the list c
 	int sSize = sList.get_size();
 	bool equalContinue = false;
 	int equalCount = 0;
-	if (fSize == 0 or sSize == 0) return false;
+	if (fSize == 0 || sSize == 0) return false;
 	if (fSize >= sSize) {
 		for (int i = 0; i < fSize; i++)
 		{
@@ -178,7 +179,7 @@ bool contains(MyList& fList, MyList& sList)		//function that check if the list c
 					equalContinue = false;
 					equalCount = 0;
 				}
-				if ((equalContinue == true) and (equalCount == sSize)) return true;
+				if ((equalContinue == true) && (equalCount == sSize)) return true;
 			}
 		}
 	}
@@ -198,7 +199,7 @@ bool contains(MyList& fList, MyList& sList)		//function that check if the list c
 					equalContinue = false;
 					equalCount = 0;
 				}
-				if ((equalContinue == true) and (equalCount == fSize)) return true;
+				if ((equalContinue == true) && (equalCount == fSize)) return true;
 			}
 		}
 	}
