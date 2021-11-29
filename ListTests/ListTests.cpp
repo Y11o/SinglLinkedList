@@ -128,14 +128,14 @@ namespace ListTests
 			list.push_front(10);
 			list.push_front(20);
 			list.push_front(30);
-			Assert::IsTrue(contains(list3, list) == 0);
+			Assert::IsTrue(list.contains(list3) == 0);
 			list3.push_back(13);
 			list3.push_back(71);
-			Assert::IsTrue(contains(list3, list) == 0);
+			Assert::IsTrue(list3.contains(list) == 0);
 			list2.push_front(10);
 			list2.push_front(20);
-			Assert::IsTrue(contains(list, list2) == 1);
-			Assert::IsTrue(contains(list2, list) == 1);
+			Assert::IsTrue(list.contains(list) == 1);
+			Assert::IsTrue(list2.contains(list2) == 1);
 			
 			
 		}
