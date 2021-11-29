@@ -1,0 +1,15 @@
+﻿  ListTests.cpp
+D:\My projects\VS repos\SibglLinkedList\MyList.h(167,17): error C2146: синтаксическая ошибка: отсутствие ")" перед идентификатором "or"
+D:\My projects\VS repos\SibglLinkedList\MyList.h(167,17): error C2065: or: необъявленный идентификатор
+D:\My projects\VS repos\SibglLinkedList\MyList.h(167,20): error C2146: синтаксическая ошибка: отсутствие ";" перед идентификатором "sSize"
+D:\My projects\VS repos\SibglLinkedList\MyList.h(167,30): error C2059: синтаксическая ошибка: )
+D:\My projects\VS repos\SibglLinkedList\MyList.h(167,32): error C2143: синтаксическая ошибка: отсутствие ";" перед "return"
+D:\My projects\VS repos\SibglLinkedList\MyList.h(167,26): warning C4553: "==": результат выражения не используется; вы хотели использовать "="?
+D:\My projects\VS repos\SibglLinkedList\MyList.h(183,33): error C2146: синтаксическая ошибка: отсутствие ")" перед идентификатором "and"
+D:\My projects\VS repos\SibglLinkedList\MyList.h(183,33): error C3861: and: идентификатор не найден
+D:\My projects\VS repos\SibglLinkedList\MyList.h(183,58): error C2059: синтаксическая ошибка: )
+D:\My projects\VS repos\SibglLinkedList\MyList.h(183,60): error C2143: синтаксическая ошибка: отсутствие ";" перед "return"
+D:\My projects\VS repos\SibglLinkedList\MyList.h(203,33): error C2146: синтаксическая ошибка: отсутствие ")" перед идентификатором "and"
+D:\My projects\VS repos\SibglLinkedList\MyList.h(203,33): error C3861: and: идентификатор не найден
+D:\My projects\VS repos\SibglLinkedList\MyList.h(203,58): error C2059: синтаксическая ошибка: )
+D:\My projects\VS repos\SibglLinkedList\MyList.h(203,60): error C2143: синтаксическая ошибка: отсутствие ";" перед "return"
