@@ -68,16 +68,23 @@ int MyList::get_size()						//function that returns size of the list		O(1)
 }
 
 int MyList::at(int index)					//function that returns data of the element with assigned index		O(n)
-{
-	int currIndex = 0;
-	Node* curr = this->head;
-	while (curr != nullptr) {
-		if (currIndex == index) {
-			return curr->data;
+{	
+	if ((index >= 0) and (index < size)) {
+		int currIndex = 0;
+		Node* curr = this->head;
+		while (curr != nullptr) {
+			if (currIndex == index) {
+				return curr->data;
+			}
+			curr = curr->pNext;
+			currIndex++;
 		}
-		curr = curr->pNext;
-		currIndex++;
 	}
+	else
+	{
+		throw invalid_argument("Out of List range, index must be in range 0 <= index < size");
+	}
+	
 }
 
 bool MyList::isEmpty()						//function returns 1 if the list is empty and 0 if it has at least one element		O(1)
@@ -108,47 +115,65 @@ void MyList::push_front(int data)			//function that add new element at the first
 
 void MyList::insert(int data, int index)	//function that add new element at assigned position	O(n)
 {
-	if (index == 0)
-	{
-		push_front(data);
-	}
-	else {
-		Node* prevNode = this->head;
-		for (int i = 0; i < index - 1; i++)
+	if ((index >= 0) and (index <= size)) {
+		if (index == 0)
 		{
-			prevNode = prevNode->pNext;
+			push_front(data);
 		}
-		prevNode->pNext = new Node(data, prevNode->pNext);
-		size++;
+		else {
+			Node* prevNode = this->head;
+			for (int i = 0; i < index - 1; i++)
+			{
+				prevNode = prevNode->pNext;
+			}
+			prevNode->pNext = new Node(data, prevNode->pNext);
+			size++;
+		}
+	}
+	else
+	{
+		throw invalid_argument("Out of List range, index must be in range 0 <= index <= size");
 	}
 }
 
 void MyList::remove(int index)			//function that delete element with assigned position	O(n)
 {
-	if (index == 0) {
-		pop_front();
-	}
-	else {
-		Node* prevNode = this->head;
-		for (int i = 0; i < index - 1; i++)
-		{
-			prevNode = prevNode->pNext;
+	if ((index >= 0) and (index < size)) {
+		if (index == 0) {
+			pop_front();
 		}
-		Node* removedNode = prevNode->pNext;
-		prevNode->pNext = removedNode->pNext;
-		delete removedNode;
-		size--;
+		else {
+			Node* prevNode = this->head;
+			for (int i = 0; i < index - 1; i++)
+			{
+				prevNode = prevNode->pNext;
+			}
+			Node* removedNode = prevNode->pNext;
+			prevNode->pNext = removedNode->pNext;
+			delete removedNode;
+			size--;
+		}
+	}
+	else
+	{
+		throw invalid_argument("Out of List range, index must be in range 0 <= index < size");
 	}
 }
 
 void MyList::set(int data, int index)		//function that change data of the element with assigned position	O(n)
 {
-	Node* currNode = this->head;
-	for (int i = 0; i < index; i++)
-	{
-		currNode = currNode->pNext;
+	if ((index >= 0) and (index < size)) {
+		Node* currNode = this->head;
+		for (int i = 0; i < index; i++)
+		{
+			currNode = currNode->pNext;
+		}
+		currNode->data = data;
 	}
-	currNode->data = data;
+	else
+	{
+		throw invalid_argument("Out of List range, index must be in range 0 <= index < size");
+	}
 }
 
 void MyList::pop_back()						//function that delete the last element of the list		O(n)
