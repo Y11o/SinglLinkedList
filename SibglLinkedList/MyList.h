@@ -78,8 +78,6 @@ int MyList::at(int index)					//function that returns data of the element with a
 		curr = curr->pNext;
 		currIndex++;
 	}
-	cout << "Your List contains only " << currIndex << " elements." << endl;	//exception, if list has less elements, than assigned index
-	return 0;
 }
 
 bool MyList::isEmpty()						//function returns 1 if the list is empty and 0 if it has at least one element		O(1)
