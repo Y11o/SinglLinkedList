@@ -19,7 +19,7 @@ public:
 	void remove(int index);
 	void set(int data, int index);
 	void pop_back();
-	friend bool contains(MyList& fList, MyList& sList);
+	bool contains(MyList& List);
 	friend std::ostream& operator<< (std::ostream& out, const MyList& list);
 
 private:									//struct node, which contains data and reference to next element 
@@ -42,7 +42,7 @@ private:									//struct node, which contains data and reference to next elemen
 MyList::MyList() {							//list creator      O(1)
 
 	size = 0;
-	head = nullptr;												
+	head = nullptr;
 
 }
 
@@ -68,8 +68,8 @@ int MyList::get_size()						//function that returns size of the list		O(1)
 }
 
 int MyList::at(int index)					//function that returns data of the element with assigned index		O(n)
-{	
-	if ((index >= 0) and (index < size)) {
+{
+	if ((index >= 0) && (index < size)) {
 		int currIndex = 0;
 		Node* curr = this->head;
 		while (curr != nullptr) {
@@ -84,7 +84,7 @@ int MyList::at(int index)					//function that returns data of the element with a
 	{
 		throw invalid_argument("Out of List range, index must be in range 0 <= index < size");
 	}
-	
+
 }
 
 bool MyList::isEmpty()						//function returns 1 if the list is empty and 0 if it has at least one element		O(1)
@@ -115,7 +115,7 @@ void MyList::push_front(int data)			//function that add new element at the first
 
 void MyList::insert(int data, int index)	//function that add new element at assigned position	O(n)
 {
-	if ((index >= 0) and (index <= size)) {
+	if ((index >= 0) && (index <= size)) {
 		if (index == 0)
 		{
 			push_front(data);
@@ -138,7 +138,7 @@ void MyList::insert(int data, int index)	//function that add new element at assi
 
 void MyList::remove(int index)			//function that delete element with assigned position	O(n)
 {
-	if ((index >= 0) and (index < size)) {
+	if ((index >= 0) && (index < size)) {
 		if (index == 0) {
 			pop_front();
 		}
@@ -162,7 +162,7 @@ void MyList::remove(int index)			//function that delete element with assigned po
 
 void MyList::set(int data, int index)		//function that change data of the element with assigned position	O(n)
 {
-	if ((index >= 0) and (index < size)) {
+	if ((index >= 0) && (index < size)) {
 		Node* currNode = this->head;
 		for (int i = 0; i < index; i++)
 		{
@@ -177,58 +177,58 @@ void MyList::set(int data, int index)		//function that change data of the elemen
 }
 
 void MyList::pop_back()						//function that delete the last element of the list		O(n)
-{	
+{
 	int toRemove = size - 1;
 	remove(toRemove);
 }
 
-bool contains(MyList& fList, MyList& sList)		//function that check if the list contains another list		O(n^2)
+bool MyList::contains(MyList& List)			//function that check if the list contains another list		O(n)
 {
-	int fSize = fList.get_size();
-	int sSize = sList.get_size();
+	int fSize = this->size;
+	int sSize = List.get_size();
 	bool equalContinue = false;
 	int equalCount = 0;
+	Node* curr = this->head;
 	if (fSize == 0 || sSize == 0) return false;
 	if (fSize >= sSize) {
-		for (int i = 0; i < fSize; i++)
+		for (int j = 0; j < sSize; j++)
 		{
-			for (int j = 0; j < sSize; j++)
-			{
-				if (fList.at(i) == sList.at(j)) {
-					equalContinue = true;
-					equalCount++;
-					i++;
-				}
-				else
-				{
-					equalContinue = false;
-					equalCount = 0;
-				}
-				if ((equalContinue == true) && (equalCount == sSize)) return true;
+			if (curr->data == List.at(j)) {
+				equalContinue = true;
+				equalCount++;
+				curr = curr->pNext;
 			}
+			else
+			{
+				equalContinue = false;
+				equalCount = 0;
+			}
+			if ((equalContinue == true) && (equalCount == sSize)) return true;
 		}
 	}
 	else
 	{
 		for (int i = 0; i < sSize; i++)
 		{
-			for (int j = 0; j < fSize; j++)
+			if (curr->data == List.at(i)) {
+				equalContinue = true;
+				equalCount++;
+				i++;
+			}
+			else
 			{
-				if (fList.at(j) == sList.at(i)) {
-					equalContinue = true;
-					equalCount++;
-					i++;
-				}
-				else
-				{
-					equalContinue = false;
-					equalCount = 0;
-				}
-				if ((equalContinue == true) && (equalCount == fSize)) return true;
+				equalContinue = false;
+				equalCount = 0;
+			}
+			if ((equalContinue == true) && (equalCount == fSize)) return true;
+			if (curr->pNext != nullptr) curr = curr->pNext; else
+			{
+				break;
 			}
 		}
 	}
 	return false;
+
 }
 
 std::ostream& operator<<(std::ostream& out, MyList& list)      //override of "<<"		O(n)
